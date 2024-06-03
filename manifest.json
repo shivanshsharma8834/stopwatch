@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Stopwatch",
+    "version": "1.0",
+    "description": "Scuderria La Ferrari Stopwatch",
+    "icons": {
+      "48": "icon1.png"
+    },
+    "permissions": [],
+    "background": {
+      "service_worker": "main.js"
+    },
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "icon1.png"
+    },
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["popup.js"],
+        "css": ["styles.css"]
+      }
+    ]
+  }
+  
