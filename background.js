@@ -1,8 +1,6 @@
-// let leadSeconds = 0;
-// let leadMinutes = 0;
-// let leadHours = 0;
 
-let running = localStorage.setItem('running', true);
+let running;
+localStorage.setItem('running', 'false');
 
 let seconds = 0;
 let minutes = 0;
@@ -10,9 +8,9 @@ let hours = 0;
 
 function stopwatch_background_callback() {
 
-    // let seconds = localStorage.getItem('seconds');
-    // let minutes = localStorage.getItem('minutes');
-    // let hours = localStorage.getItem('hours');
+    seconds = localStorage.getItem('seconds');
+    minutes = localStorage.getItem('minutes');
+    hours = localStorage.getItem('hours');
 
     seconds++;
     if(seconds/60 === 1)
@@ -32,7 +30,20 @@ function stopwatch_background_callback() {
 
 }
 
-if (localStorage.getItem('running')) {
-    setInterval(stopwatch_background_callback, 1000);
-    console.log("Running");
+function run_state_checker() {
+    running = localStorage.getItem('running');
+
+    if (running == 'true') {
+        console.log('Clock is running.');
+        stopwatch_background_callback();
+    } else if (running == 'false') {
+        console.log('Clock has stopped.');
+    }
 }
+
+setInterval(run_state_checker, 1000);
+
+
+
+
+
